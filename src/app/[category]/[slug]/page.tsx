@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  const relatedPosts = await getRelatedPosts(slug, category)
+  const relatedPosts = await getRelatedPosts(slug, category, post.tags || [])
 
   // Generate schemas
   const articleSchema = generateArticleSchema({

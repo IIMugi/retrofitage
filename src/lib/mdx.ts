@@ -117,11 +117,53 @@ export async function getAllPostSlugs(): Promise<{ category: string; slug: strin
   }))
 }
 
-// Get related posts (same category, different slug)
-export async function getRelatedPosts(slug: string, category: string, limit = 3): Promise<PostMeta[]> {
+// Get related posts (by tags first, then same category, different slug)
+export async function getRelatedPosts(slug: string, category: string, tags: string[] = [], limit = 3): Promise<PostMeta[]> {
   const allPosts = await getAllPosts()
-  return allPosts
-    .filter((post) => post.category === category && post.slug !== slug)
+  const currentPost = allPosts.find(p => p.slug === slug)
+  
+  // Score posts by relevance
+  const scoredPosts = allPosts
+    .filter((post) => post.slug !== slug) // Exclude current post
+    .map((post) => {
+      let score = 0
+      
+      // Same category = 2 points
+      if (post.category === category) {
+        score += 2
+      }
+      
+      // Shared tags = 1 point each
+      if (tags.length > 0 && post.tags) {
+        const sharedTags = tags.filter(tag => post.tags?.includes(tag))
+        score += sharedTags.length
+      }
+      
+      // Same author = 0.5 points
+      if (currentPost?.author && post.author === currentPost.author) {
+        score += 0.5
+      }
+      
+      return { post, score }
+    })
+    .filter(({ score }) => score > 0) // Only include posts with some relevance
+    .sort((a, b) => b.score - a.score) // Sort by score descending
     .slice(0, limit)
+    .map(({ post }) => post)
+  
+  // If not enough related posts, fill with recent posts from same category
+  if (scoredPosts.length < limit) {
+    const remaining = allPosts
+      .filter((post) => 
+        post.slug !== slug && 
+        post.category === category &&
+        !scoredPosts.find(p => p.slug === post.slug)
+      )
+      .slice(0, limit - scoredPosts.length)
+    
+    scoredPosts.push(...remaining)
+  }
+  
+  return scoredPosts.slice(0, limit)
 }
 

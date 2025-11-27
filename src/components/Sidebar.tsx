@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { SidebarAd } from './AdUnit'
+import NewsletterForm from './NewsletterForm'
 
 interface Post {
   slug: string
@@ -90,28 +91,7 @@ export default function Sidebar({ trendingPosts = [], highValuePosts = [] }: Sid
       </div>
 
       {/* Newsletter Signup */}
-      <div className="bg-slate-800 rounded-xl p-6 text-white">
-        <h3 className="text-xl font-semibold mb-2">Stay Updated</h3>
-        <p className="text-slate-300 text-sm mb-4">
-          Get the latest aging-in-place tips and product reviews delivered to your inbox.
-        </p>
-        <form className="space-y-3">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-primary-500"
-          />
-          <button
-            type="submit"
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
-          >
-            Subscribe Free
-          </button>
-        </form>
-        <p className="text-xs text-slate-400 mt-3">
-          No spam. Unsubscribe anytime.
-        </p>
-      </div>
+      <NewsletterForm variant="sidebar" />
     </aside>
   )
 }
