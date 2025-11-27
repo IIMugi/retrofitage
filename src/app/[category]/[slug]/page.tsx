@@ -11,7 +11,7 @@ import {
 } from '@/lib/seo'
 import Sidebar from '@/components/Sidebar'
 import { InArticleAd, LeaderboardAd } from '@/components/AdUnit'
-import { useMDXComponents } from '../../../../mdx-components'
+import { mdxComponents } from '@/lib/mdx-components'
 import remarkGfm from 'remark-gfm'
 
 interface PageProps {
@@ -62,7 +62,6 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const relatedPosts = await getRelatedPosts(slug, category)
-  const components = useMDXComponents({})
 
   // Generate schemas
   const articleSchema = generateArticleSchema({
@@ -194,7 +193,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="prose prose-lg prose-slate max-w-none">
               <MDXRemote 
                 source={post.content} 
-                components={components}
+                components={mdxComponents}
                 options={{
                   mdxOptions: {
                     remarkPlugins: [remarkGfm],

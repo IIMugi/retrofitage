@@ -49,9 +49,9 @@ export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnit
     }
 
     try {
-      // @ts-ignore
+      // @ts-expect-error - AdSense global
       if (window.adsbygoogle && adRef.current) {
-        // @ts-ignore
+        // @ts-expect-error - AdSense global
         (window.adsbygoogle = window.adsbygoogle || []).push({})
         isLoaded.current = true
       }
