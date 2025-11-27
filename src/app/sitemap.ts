@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
   
   // Category pages
-  const categories = [...new Set(posts.map(post => post.category))]
+  const categories = Array.from(new Set(posts.map(post => post.category)))
   const categoryPages: MetadataRoute.Sitemap = categories.map(category => ({
     url: `${baseUrl}/${category}`,
     lastModified: new Date(),
