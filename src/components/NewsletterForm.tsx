@@ -24,8 +24,7 @@ export default function NewsletterForm({ variant = 'sidebar' }: NewsletterFormPr
 
     try {
       // Using Formspree - free form backend
-      // Replace YOUR_FORM_ID with your actual Formspree form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/xrbwkwnq', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
