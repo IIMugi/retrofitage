@@ -13,7 +13,7 @@ export default function ContactPage() {
       <div className="prose prose-lg prose-slate max-w-none mb-8">
         <p className="text-xl text-slate-600">
           Have questions about home modifications, product recommendations, or our content? 
-          We're here to help! Fill out the form below or reach out directly via email.
+          We are here to help! Fill out the form below or reach out directly via email.
         </p>
       </div>
 
@@ -124,16 +124,16 @@ export default function ContactPage() {
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
             <h3 className="font-semibold text-amber-800 mb-2">📋 Before You Contact Us</h3>
             <p className="text-amber-700 text-sm">
-              Many questions are answered in our detailed guides. Try searching our site first - 
-              you might find exactly what you're looking for!
+            Many questions are answered in our detailed guides. Try searching our site first - 
+            you might find exactly what you are looking for!
             </p>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
             <h3 className="font-semibold text-blue-800 mb-2">💡 Content Suggestions</h3>
             <p className="text-blue-700 text-sm">
-              Have an idea for a topic we should cover? We love hearing from our readers! 
-              Let us know what aging-in-place challenges you'd like us to address.
+            Have an idea for a topic we should cover? We love hearing from our readers! 
+            Let us know what aging-in-place challenges you would like us to address.
             </p>
           </div>
         </div>

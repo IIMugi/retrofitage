@@ -14,7 +14,7 @@ export default function DisclosurePage() {
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8">
         <p className="text-lg text-amber-800 font-medium">
           <strong>In short:</strong> We may earn commissions when you purchase products through our links. 
-          This doesn't cost you anything extra, and it helps us continue creating helpful content.
+          This does not cost you anything extra, and it helps us continue creating helpful content.
         </p>
       </div>
 
@@ -59,8 +59,7 @@ export default function DisclosurePage() {
             Our reviews are based on research, expert knowledge, and user feedback – not commission rates.
           </li>
           <li>
-            <strong>No Pay-for-Play:</strong> Companies cannot pay us to write positive reviews. Our 
-            editorial content is independent of our affiliate relationships.
+            <strong>No Pay-for-Play:</strong> Companies cannot pay us to write positive reviews. Our editorial content is independent of our affiliate relationships.
           </li>
           <li>
             <strong>Clear Disclosure:</strong> We include affiliate disclosure notices on pages with 
@@ -76,7 +75,7 @@ export default function DisclosurePage() {
         <ul>
           <li>Recommend products solely because they offer high commissions</li>
           <li>Hide negative aspects of products we promote</li>
-          <li>Recommend products that aren't relevant or helpful to our readers</li>
+          <li>Recommend products that are not relevant or helpful to our readers</li>
           <li>Create fake reviews or misleading comparisons</li>
         </ul>
 
@@ -101,7 +100,7 @@ export default function DisclosurePage() {
 
         <h2>Questions?</h2>
         <p>
-          If you have any questions about our affiliate relationships or how we make money, please don't 
+          If you have any questions about our affiliate relationships or how we make money, please do not 
           hesitate to{' '}
           <a href="/contact" className="text-primary-600 hover:underline">contact us</a>. 
           We're happy to provide more details.
@@ -111,7 +110,7 @@ export default function DisclosurePage() {
           <h3 className="text-xl font-semibold text-primary-800 mb-2">Thank You</h3>
           <p className="text-primary-700">
             Thank you for supporting RetrofitAge by using our affiliate links. Your trust means everything 
-            to us, and we're committed to earning it every day with honest, helpful content.
+            to us, and we are committed to earning it every day with honest, helpful content.
           </p>
         </div>
       </div>

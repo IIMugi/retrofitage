@@ -140,7 +140,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 Coming Soon!
               </h2>
               <p className="text-slate-500 mb-6">
-                We're working on comprehensive guides for {info.title.toLowerCase()}. 
+                We are working on comprehensive guides for {info.title.toLowerCase()}. 
                 Check back soon or subscribe to be notified when new content is published.
               </p>
               <Link

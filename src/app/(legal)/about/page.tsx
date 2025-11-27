@@ -21,7 +21,7 @@ export default function AboutPage() {
         <h2 className="text-2xl font-semibold text-slate-800 mt-8 mb-4">Our Mission</h2>
         <p>
           Every day, thousands of families face the challenge of adapting their homes for aging loved ones. 
-          We believe that with the right information, these modifications don't have to be overwhelming or 
+          We believe that with the right information, these modifications do not have to be overwhelming or 
           confusing. Our team of engineers and healthcare professionals work together to provide:
         </p>
         <ul className="list-disc pl-6 space-y-2 my-4">
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
         <h2 className="text-2xl font-semibold text-slate-800 mt-8 mb-4">Contact Us</h2>
         <p>
-          Have questions or suggestions? We'd love to hear from you. Visit our{' '}
+          Have questions or suggestions? We would love to hear from you. Visit our{' '}
           <Link href="/contact" className="text-primary-600 hover:underline">Contact Page</Link>{' '}
           to get in touch with our team.
         </p>

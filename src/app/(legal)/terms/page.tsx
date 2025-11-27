@@ -14,15 +14,14 @@ export default function TermsPage() {
       
       <div className="prose prose-lg prose-slate max-w-none">
         <p>
-          Welcome to RetrofitAge. By accessing and using our website retrofitage.com (the "Site"), 
-          you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, 
+          Welcome to RetrofitAge. By accessing and using our website retrofitage.com (the &quot;Site&quot;), 
+          you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, 
           please do not use our Site.
         </p>
 
         <h2>1. Acceptance of Terms</h2>
         <p>
-          By using this Site, you confirm that you are at least 18 years old or have parental consent, 
-          and that you agree to comply with and be bound by these Terms.
+          By using this Site, you confirm that you are at least 18 years old or have parental consent, and that you agree to comply with and be bound by these Terms.
         </p>
 
         <h2>2. Description of Service</h2>
@@ -34,7 +33,7 @@ export default function TermsPage() {
 
         <h2>3. Disclaimer of Warranties</h2>
         <p>
-          THE SITE AND ITS CONTENT ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. We make no 
+          THE SITE AND ITS CONTENT ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND. We make no 
           warranties, expressed or implied, regarding:
         </p>
         <ul>
