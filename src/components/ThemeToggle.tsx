@@ -1,9 +1,46 @@
 'use client'
 
-import { useTheme } from './ThemeProvider'
+import { useEffect, useState } from 'react'
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme()
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // Check localStorage and system preference
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    if (savedTheme) {
+      setTheme(savedTheme)
+    } else if (systemPrefersDark) {
+      setTheme('dark')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
+    const root = document.documentElement
+    if (theme === 'dark') {
+      root.classList.add('dark')
+    } else {
+      root.classList.remove('dark')
+    }
+    localStorage.setItem('theme', theme)
+  }, [theme, mounted])
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+  }
+
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800" />
+    )
+  }
 
   return (
     <button
@@ -26,4 +63,3 @@ export default function ThemeToggle() {
     </button>
   )
 }
-
