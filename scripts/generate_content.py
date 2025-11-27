@@ -240,7 +240,101 @@ def create_model(api_key: str):
     )
 
 
+def get_unsplash_image(keywords: List[str], category: str) -> str:
+    """Unsplash'tan konuya uygun görsel URL'i oluştur"""
+    # Kategori bazlı önceden seçilmiş yüksek kaliteli Unsplash fotoğrafları
+    # Her kategoride 5 farklı görsel - rotasyonla kullanılacak
+    category_images = {
+        "bathroom-safety": [
+            "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=630&fit=crop&q=80",  # Modern bathroom
+            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200&h=630&fit=crop&q=80",  # Clean bathroom
+            "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&h=630&fit=crop&q=80",  # Bathroom interior
+            "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200&h=630&fit=crop&q=80",  # Spa bathroom
+            "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1200&h=630&fit=crop&q=80",  # Luxury bath
+        ],
+        "smart-home": [
+            "https://images.unsplash.com/photo-1558002038-1055907df827?w=1200&h=630&fit=crop&q=80",  # Smart speaker
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop&q=80",  # Home automation
+            "https://images.unsplash.com/photo-1585503418537-88331351ad99?w=1200&h=630&fit=crop&q=80",  # Smart devices
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=1200&h=630&fit=crop&q=80",  # Living room tech
+            "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1200&h=630&fit=crop&q=80",  # Smart home setup
+        ],
+        "smart-monitoring": [
+            "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=630&fit=crop&q=80",  # Health tech
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop&q=80",  # Dashboard
+            "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&h=630&fit=crop&q=80",  # Medical device
+            "https://images.unsplash.com/photo-1576671081837-49000212a370?w=1200&h=630&fit=crop&q=80",  # Health monitor
+            "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=1200&h=630&fit=crop&q=80",  # Smartwatch
+        ],
+        "finance-insurance": [
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=630&fit=crop&q=80",  # Financial planning
+            "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=630&fit=crop&q=80",  # Documents
+            "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1200&h=630&fit=crop&q=80",  # Calculator
+            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=630&fit=crop&q=80",  # Insurance
+            "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=630&fit=crop&q=80",  # Money planning
+        ],
+        "finance": [
+            "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=630&fit=crop&q=80",  # Savings
+            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=630&fit=crop&q=80",  # Planning
+            "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=630&fit=crop&q=80",  # Money
+            "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=1200&h=630&fit=crop&q=80",  # Home investment
+            "https://images.unsplash.com/photo-1560472355-536de3962603?w=1200&h=630&fit=crop&q=80",  # Budget
+        ],
+        "structural-retrofit": [
+            "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=630&fit=crop&q=80",  # Construction
+            "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=630&fit=crop&q=80",  # Renovation
+            "https://images.unsplash.com/photo-1585128792020-803d29415281?w=1200&h=630&fit=crop&q=80",  # Home improvement
+            "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=1200&h=630&fit=crop&q=80",  # Tools
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80",  # Building
+        ],
+        "housing-options": [
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=630&fit=crop&q=80",  # Modern house
+            "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&h=630&fit=crop&q=80",  # Family home
+            "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1200&h=630&fit=crop&q=80",  # Cottage
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=630&fit=crop&q=80",  # Luxury home
+            "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1200&h=630&fit=crop&q=80",  # Cozy house
+        ],
+        "kitchen-safety": [
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop&q=80",  # Modern kitchen
+            "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1200&h=630&fit=crop&q=80",  # Clean kitchen
+            "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&h=630&fit=crop&q=80",  # Kitchen interior
+            "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1200&h=630&fit=crop&q=80",  # Cooking
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",  # Home kitchen
+        ],
+        "electrical-lighting": [
+            "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=1200&h=630&fit=crop&q=80",  # Light bulbs
+            "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=1200&h=630&fit=crop&q=80",  # Pendant lights
+            "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=1200&h=630&fit=crop&q=80",  # Interior lighting
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80",  # Bright room
+            "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&h=630&fit=crop&q=80",  # Living room
+        ],
+        "accessibility": [
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=630&fit=crop&q=80",  # Accessibility
+            "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=630&fit=crop&q=80",  # Home access
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",  # Home
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=630&fit=crop&q=80",  # Interior
+            "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&h=630&fit=crop&q=80",  # Modern space
+        ],
+    }
+    
+    # Varsayılan görseller
+    default_images = [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&h=630&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&h=630&fit=crop&q=80",
+    ]
+    
+    # Kategoriye göre görsel seç
+    images = category_images.get(category, default_images)
+    
+    # Rastgele birini seç
+    return random.choice(images)
+
+
 def generate_article_prompt(topic: dict) -> str:
+    # Görsel URL'i oluştur
+    image_url = get_unsplash_image(topic.get('keywords', []), topic.get('category', 'general'))
+    
     return f"""Write a comprehensive, SEO-optimized blog post about: "{topic['title']}"
 
 TARGET KEYWORDS: {', '.join(topic.get('keywords', []))}
@@ -254,6 +348,7 @@ date: "{datetime.now().strftime('%Y-%m-%d')}"
 category: "{topic.get('category', 'general')}"
 tags: {json.dumps(topic.get('keywords', [])[:5])}
 author: "RetrofitAge Engineering Team"
+image: "{image_url}"
 featured: false
 ---
 

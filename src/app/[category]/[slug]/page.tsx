@@ -149,6 +149,18 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Main Content */}
           <div className="flex-1 max-w-content">
+            {/* Featured Image */}
+            {post.image && (
+              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-lg">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+            )}
+
             {/* Header */}
             <header className="mb-8">
               <span className="inline-block bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium uppercase tracking-wide mb-4">

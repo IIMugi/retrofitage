@@ -115,19 +115,36 @@ export default async function CategoryPage({ params }: PageProps) {
                   href={`/${post.category}/${post.slug}`}
                   className="block group"
                 >
-                  <article className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-lg hover:border-primary-300 transition-all">
-                    <h2 className="text-2xl font-semibold text-slate-800 group-hover:text-primary-600 transition-colors mb-2">
-                      {post.title}
-                    </h2>
-                    <p className="text-slate-600 mb-4 line-clamp-2">
-                      {post.description}
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-slate-500">
-                      <span>{post.date}</span>
-                      <span>•</span>
-                      <span>{post.readingTime}</span>
-                      <span>•</span>
-                      <span className="text-primary-600">Read more →</span>
+                  <article className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-primary-300 transition-all flex flex-col md:flex-row">
+                    {/* Thumbnail */}
+                    {post.image ? (
+                      <div className="md:w-72 h-48 md:h-auto flex-shrink-0 relative overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div className="md:w-72 h-48 md:h-auto flex-shrink-0 bg-gradient-to-br from-primary-100 to-blue-100 flex items-center justify-center">
+                        <span className="text-5xl">{info.icon}</span>
+                      </div>
+                    )}
+                    {/* Content */}
+                    <div className="p-6 flex-1">
+                      <h2 className="text-2xl font-semibold text-slate-800 group-hover:text-primary-600 transition-colors mb-2">
+                        {post.title}
+                      </h2>
+                      <p className="text-slate-600 mb-4 line-clamp-2">
+                        {post.description}
+                      </p>
+                      <div className="flex items-center gap-4 text-sm text-slate-500">
+                        <span>{post.date}</span>
+                        <span>•</span>
+                        <span>{post.readingTime}</span>
+                        <span>•</span>
+                        <span className="text-primary-600">Read more →</span>
+                      </div>
                     </div>
                   </article>
                 </Link>
