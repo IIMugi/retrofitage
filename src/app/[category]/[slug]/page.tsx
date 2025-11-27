@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Schema Markup */}
       <script
         type="application/ld+json"
@@ -119,9 +119,9 @@ export default async function BlogPostPage({ params }: PageProps) {
       )}
 
       {/* Affiliate Disclaimer */}
-      <div className="bg-amber-50 border-b border-amber-200">
+      <div className="bg-amber-50 dark:bg-amber-900/20 border-b border-amber-200 dark:border-amber-800">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <p className="text-sm text-amber-800">
+          <p className="text-sm text-amber-800 dark:text-amber-200">
             <strong>Disclosure:</strong> As an Amazon Associate, we earn from qualifying purchases. 
             <Link href="/disclosure" className="underline ml-1">Learn more</Link>
           </p>
@@ -131,18 +131,18 @@ export default async function BlogPostPage({ params }: PageProps) {
       <article className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-6" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 text-sm text-slate-500">
+          <ol className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
             <li>
-              <Link href="/" className="hover:text-primary-600">Home</Link>
+              <Link href="/" className="hover:text-primary-600 dark:hover:text-primary-400">Home</Link>
             </li>
             <li>/</li>
             <li>
-              <Link href={`/${category}`} className="hover:text-primary-600 capitalize">
+              <Link href={`/${category}`} className="hover:text-primary-600 dark:hover:text-primary-400 capitalize">
                 {category.replace('-', ' ')}
               </Link>
             </li>
             <li>/</li>
-            <li className="text-slate-700 truncate max-w-[200px]">{post.title}</li>
+            <li className="text-slate-700 dark:text-slate-300 truncate max-w-[200px]">{post.title}</li>
           </ol>
         </nav>
 
@@ -163,16 +163,16 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Header */}
             <header className="mb-8">
-              <span className="inline-block bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium uppercase tracking-wide mb-4">
+              <span className="inline-block bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-sm font-medium uppercase tracking-wide mb-4">
                 {category.replace('-', ' ')}
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-slate-800 leading-tight mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white leading-tight mb-4">
                 {post.title}
               </h1>
-              <p className="text-xl text-slate-600 mb-6">
+              <p className="text-xl text-slate-600 dark:text-slate-300 mb-6">
                 {post.description}
               </p>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 border-b border-slate-200 pb-6">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-6">
                 <span className="flex items-center gap-1">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -202,7 +202,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <InArticleAd position={1} />
 
             {/* MDX Content */}
-            <div className="prose prose-lg prose-slate max-w-none">
+            <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
               <MDXRemote 
                 source={post.content} 
                 components={mdxComponents}
@@ -219,14 +219,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-slate-200">
-                <h4 className="text-sm font-medium text-slate-500 mb-3">Related Topics:</h4>
+              <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+                <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">Related Topics:</h4>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <Link
                       key={tag}
                       href={`/tag/${tag}`}
-                      className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1 rounded-full text-sm transition-colors"
+                      className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 py-1 rounded-full text-sm transition-colors"
                     >
                       #{tag}
                     </Link>
@@ -237,8 +237,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Related Posts */}
             {relatedPosts.length > 0 && (
-              <div className="mt-12 pt-8 border-t border-slate-200">
-                <h3 className="text-2xl font-bold text-slate-800 mb-6">Related Articles</h3>
+              <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Related Articles</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {relatedPosts.map((relatedPost) => (
                     <Link
@@ -246,11 +246,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                       href={`/${relatedPost.category}/${relatedPost.slug}`}
                       className="group"
                     >
-                      <article className="bg-slate-50 rounded-lg p-4 hover:bg-slate-100 transition-colors">
-                        <h4 className="font-semibold text-slate-800 group-hover:text-primary-600 transition-colors line-clamp-2">
+                      <article className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                        <h4 className="font-semibold text-slate-800 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h4>
-                        <p className="text-sm text-slate-500 mt-2 line-clamp-2">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">
                           {relatedPost.description}
                         </p>
                       </article>
@@ -271,7 +271,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Footer Ad */}
       <LeaderboardAd />
-    </>
+    </div>
   )
 }
-

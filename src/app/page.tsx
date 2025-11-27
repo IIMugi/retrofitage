@@ -11,28 +11,28 @@ const categories = [
     slug: 'bathroom-safety',
     description: 'Walk-in tubs, grab bars, non-slip solutions',
     icon: '🚿',
-    color: 'bg-blue-100 text-blue-700',
+    color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
   },
   {
     name: 'Smart Home',
     slug: 'smart-home',
     description: 'Voice assistants, monitoring systems, automation',
     icon: '🏠',
-    color: 'bg-green-100 text-green-700',
+    color: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
   },
   {
     name: 'Finance & Insurance',
     slug: 'finance-insurance',
     description: 'Medicare coverage, reverse mortgages, grants',
     icon: '💰',
-    color: 'bg-yellow-100 text-yellow-700',
+    color: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300',
   },
   {
     name: 'Structural Retrofit',
     slug: 'structural-retrofit',
     description: 'Ramps, doorway widening, stairlifts',
     icon: '🔧',
-    color: 'bg-orange-100 text-orange-700',
+    color: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300',
   },
 ]
 
@@ -44,14 +44,14 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight mb-6">
-              Make Your Home <span className="text-primary-600">Safe</span> for 
-              <span className="text-primary-600"> Independent Living</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-white leading-tight mb-6">
+              Make Your Home <span className="text-primary-600 dark:text-primary-400">Safe</span> for 
+              <span className="text-primary-600 dark:text-primary-400"> Independent Living</span>
             </h1>
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+            <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
               Expert guides on aging-in-place technology, home modifications, and safety solutions. 
               Trusted advice from engineers and healthcare professionals.
             </p>
@@ -64,7 +64,7 @@ export default async function HomePage() {
               </Link>
               <Link
                 href="/about"
-                className="bg-white hover:bg-slate-50 text-slate-700 font-medium px-6 py-3 rounded-lg border border-slate-300 transition-colors text-lg"
+                className="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-600 transition-colors text-lg"
               >
                 Learn More
               </Link>
@@ -74,9 +74,9 @@ export default async function HomePage() {
       </section>
 
       {/* Affiliate Disclaimer */}
-      <div className="bg-amber-50 border-b border-amber-200">
+      <div className="bg-amber-50 dark:bg-amber-900/20 border-b border-amber-200 dark:border-amber-800">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <p className="text-sm text-amber-800 text-center">
+          <p className="text-sm text-amber-800 dark:text-amber-200 text-center">
             <strong>Disclosure:</strong> As an Amazon Associate, we earn from qualifying purchases. 
             <Link href="/disclosure" className="underline ml-1">Learn more</Link>
           </p>
@@ -84,9 +84,9 @@ export default async function HomePage() {
       </div>
 
       {/* Categories Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-8 text-center">
             Explore by Category
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -94,15 +94,15 @@ export default async function HomePage() {
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
-                className="group p-6 bg-white rounded-xl border border-slate-200 hover:border-primary-300 hover:shadow-lg transition-all"
+                className="group p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary-300 dark:hover:border-primary-600 hover:shadow-lg transition-all"
               >
                 <div className={`w-12 h-12 ${cat.color} rounded-lg flex items-center justify-center text-2xl mb-4`}>
                   {cat.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 group-hover:text-primary-600 transition-colors mb-2">
+                <h3 className="text-xl font-semibold text-slate-800 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2">
                   {cat.name}
                 </h3>
-                <p className="text-slate-500 text-base">
+                <p className="text-slate-500 dark:text-slate-400 text-base">
                   {cat.description}
                 </p>
               </Link>
@@ -115,12 +115,12 @@ export default async function HomePage() {
       <LeaderboardAd />
 
       {/* Latest Articles + Sidebar */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-slate-50 dark:bg-slate-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Main Content */}
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-slate-800 mb-8">
+              <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-8">
                 Latest Guides
               </h2>
 
@@ -130,17 +130,17 @@ export default async function HomePage() {
                   href={`/${featuredPost.category}/${featuredPost.slug}`}
                   className="block mb-8 group"
                 >
-                  <article className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-                    <div className="aspect-video bg-slate-200 relative">
+                  <article className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+                    <div className="aspect-video bg-slate-200 dark:bg-slate-700 relative">
                       {featuredPost.image ? (
-                        <Image
+          <Image
                           src={featuredPost.image}
                           alt={featuredPost.title}
                           fill
                           className="object-cover"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-6xl bg-gradient-to-br from-primary-100 to-blue-100">
+                        <div className="absolute inset-0 flex items-center justify-center text-6xl bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900 dark:to-blue-900">
                           🏠
                         </div>
                       )}
@@ -149,16 +149,16 @@ export default async function HomePage() {
                       </span>
                     </div>
                     <div className="p-6">
-                      <span className="text-sm text-primary-600 font-medium uppercase tracking-wide">
+                      <span className="text-sm text-primary-600 dark:text-primary-400 font-medium uppercase tracking-wide">
                         {featuredPost.category?.replace('-', ' ')}
                       </span>
-                      <h3 className="text-2xl font-bold text-slate-800 mt-2 group-hover:text-primary-600 transition-colors">
+                      <h3 className="text-2xl font-bold text-slate-800 dark:text-white mt-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         {featuredPost.title}
                       </h3>
-                      <p className="text-slate-600 mt-3 text-lg line-clamp-2">
+                      <p className="text-slate-600 dark:text-slate-300 mt-3 text-lg line-clamp-2">
                         {featuredPost.description}
                       </p>
-                      <div className="flex items-center gap-4 mt-4 text-sm text-slate-500">
+                      <div className="flex items-center gap-4 mt-4 text-sm text-slate-500 dark:text-slate-400">
                         <span>{featuredPost.date}</span>
                         <span>•</span>
                         <span>{featuredPost.readingTime || '5 min read'}</span>
@@ -176,32 +176,32 @@ export default async function HomePage() {
                     href={`/${post.category}/${post.slug}`}
                     className="group"
                   >
-                    <article className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
-                      <div className="aspect-[16/9] bg-slate-100 relative">
+                    <article className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+                      <div className="aspect-[16/9] bg-slate-100 dark:bg-slate-700 relative">
                         {post.image ? (
-                          <Image
+          <Image
                             src={post.image}
                             alt={post.title}
                             fill
                             className="object-cover"
                           />
                         ) : (
-                          <div className="absolute inset-0 flex items-center justify-center text-4xl bg-gradient-to-br from-slate-100 to-slate-200">
+                          <div className="absolute inset-0 flex items-center justify-center text-4xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
                             📋
                           </div>
                         )}
                       </div>
                       <div className="p-5">
-                        <span className="text-xs text-primary-600 font-medium uppercase tracking-wide">
+                        <span className="text-xs text-primary-600 dark:text-primary-400 font-medium uppercase tracking-wide">
                           {post.category?.replace('-', ' ')}
                         </span>
-                        <h3 className="text-lg font-semibold text-slate-800 mt-1 group-hover:text-primary-600 transition-colors line-clamp-2">
+                        <h3 className="text-lg font-semibold text-slate-800 dark:text-white mt-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">
                           {post.title}
                         </h3>
-                        <p className="text-slate-500 mt-2 text-sm line-clamp-2">
+                        <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm line-clamp-2">
                           {post.description}
                         </p>
-                        <span className="text-xs text-slate-400 mt-3 block">
+                        <span className="text-xs text-slate-400 dark:text-slate-500 mt-3 block">
                           {post.date}
                         </span>
                       </div>
@@ -214,7 +214,7 @@ export default async function HomePage() {
               <div className="mt-8 text-center">
                 <Link
                   href="/articles"
-                  className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium text-lg"
+                  className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium text-lg"
                 >
                   View All Articles
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,12 +231,12 @@ export default async function HomePage() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-slate-800 mb-4">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">
             Trusted by Families Nationwide
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-12">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-12">
             Our engineering-grade advice helps thousands of families make informed decisions 
             about home safety modifications.
           </p>
@@ -248,8 +248,8 @@ export default async function HomePage() {
               { number: '24/7', label: 'Free Resources' },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="text-4xl font-bold text-primary-600">{stat.number}</div>
-                <div className="text-slate-500 mt-1">{stat.label}</div>
+                <div className="text-4xl font-bold text-primary-600 dark:text-primary-400">{stat.number}</div>
+                <div className="text-slate-500 dark:text-slate-400 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -92,88 +92,89 @@ export default async function CategoryPage({ params }: PageProps) {
   const posts = await getPostsByCategory(category)
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      {/* Category Header */}
-      <div className="mb-12">
-        <div className="flex items-center gap-4 mb-4">
-          <span className="text-5xl">{info.icon}</span>
-          <div>
-            <h1 className="text-4xl font-bold text-slate-800">{info.title}</h1>
-            <p className="text-xl text-slate-600 mt-2">{info.description}</p>
+    <div className="min-h-screen bg-white dark:bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Category Header */}
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="text-5xl">{info.icon}</span>
+            <div>
+              <h1 className="text-4xl font-bold text-slate-800 dark:text-white">{info.title}</h1>
+              <p className="text-xl text-slate-600 dark:text-slate-300 mt-2">{info.description}</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex flex-col lg:flex-row gap-12">
-        {/* Main Content */}
-        <div className="flex-1">
-          {posts.length > 0 ? (
-            <div className="space-y-6">
-              {posts.map((post) => (
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Main Content */}
+          <div className="flex-1">
+            {posts.length > 0 ? (
+              <div className="space-y-6">
+                {posts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/${post.category}/${post.slug}`}
+                    className="block group"
+                  >
+                    <article className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all flex flex-col md:flex-row">
+                      {/* Thumbnail */}
+                      {post.image ? (
+                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 relative overflow-hidden">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      ) : (
+                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900 dark:to-blue-900 flex items-center justify-center">
+                          <span className="text-5xl">{info.icon}</span>
+                        </div>
+                      )}
+                      {/* Content */}
+                      <div className="p-6 flex-1">
+                        <h2 className="text-2xl font-semibold text-slate-800 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2">
+                          {post.title}
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
+                          {post.description}
+                        </p>
+                        <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+                          <span>{post.date}</span>
+                          <span>•</span>
+                          <span>{post.readingTime}</span>
+                          <span>•</span>
+                          <span className="text-primary-600 dark:text-primary-400">Read more →</span>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-12 text-center">
+                <span className="text-6xl mb-4 block">{info.icon}</span>
+                <h2 className="text-2xl font-semibold text-slate-700 dark:text-slate-200 mb-2">
+                  Coming Soon!
+                </h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">
+                  We are working on comprehensive guides for {info.title.toLowerCase()}. 
+                  Check back soon or subscribe to be notified when new content is published.
+                </p>
                 <Link
-                  key={post.slug}
-                  href={`/${post.category}/${post.slug}`}
-                  className="block group"
+                  href="/"
+                  className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
                 >
-                  <article className="bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-primary-300 transition-all flex flex-col md:flex-row">
-                    {/* Thumbnail */}
-                    {post.image ? (
-                      <div className="md:w-72 h-48 md:h-auto flex-shrink-0 relative overflow-hidden">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    ) : (
-                      <div className="md:w-72 h-48 md:h-auto flex-shrink-0 bg-gradient-to-br from-primary-100 to-blue-100 flex items-center justify-center">
-                        <span className="text-5xl">{info.icon}</span>
-                      </div>
-                    )}
-                    {/* Content */}
-                    <div className="p-6 flex-1">
-                      <h2 className="text-2xl font-semibold text-slate-800 group-hover:text-primary-600 transition-colors mb-2">
-                        {post.title}
-                      </h2>
-                      <p className="text-slate-600 mb-4 line-clamp-2">
-                        {post.description}
-                      </p>
-                      <div className="flex items-center gap-4 text-sm text-slate-500">
-                        <span>{post.date}</span>
-                        <span>•</span>
-                        <span>{post.readingTime}</span>
-                        <span>•</span>
-                        <span className="text-primary-600">Read more →</span>
-                      </div>
-                    </div>
-                  </article>
+                  Browse All Guides
                 </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="bg-slate-50 rounded-xl p-12 text-center">
-              <span className="text-6xl mb-4 block">{info.icon}</span>
-              <h2 className="text-2xl font-semibold text-slate-700 mb-2">
-                Coming Soon!
-              </h2>
-              <p className="text-slate-500 mb-6">
-                We are working on comprehensive guides for {info.title.toLowerCase()}. 
-                Check back soon or subscribe to be notified when new content is published.
-              </p>
-              <Link
-                href="/"
-                className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-              >
-                Browse All Guides
-              </Link>
-            </div>
-          )}
-        </div>
+              </div>
+            )}
+          </div>
 
-        {/* Sidebar */}
-        <Sidebar />
+          {/* Sidebar */}
+          <Sidebar />
+        </div>
       </div>
     </div>
   )
 }
-

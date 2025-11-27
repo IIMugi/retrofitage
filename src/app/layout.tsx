@@ -98,7 +98,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <Header />
         <main className="flex-1">
-          {children}
+        {children}
         </main>
         <Footer />
       </body>
