@@ -97,7 +97,7 @@ export default function PrivacyPage() {
           <li>Object to certain processing activities</li>
         </ul>
 
-        <h2>Children's Privacy</h2>
+        <h2>Children&apos;s Privacy</h2>
         <p>
           Our Site is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.
         </p>

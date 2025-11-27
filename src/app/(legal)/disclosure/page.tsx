@@ -71,7 +71,7 @@ export default function DisclosurePage() {
           </li>
         </ul>
 
-        <h3>What We Won't Do:</h3>
+        <h3>What We Will Not Do:</h3>
         <ul>
           <li>Recommend products solely because they offer high commissions</li>
           <li>Hide negative aspects of products we promote</li>
@@ -103,7 +103,7 @@ export default function DisclosurePage() {
           If you have any questions about our affiliate relationships or how we make money, please do not 
           hesitate to{' '}
           <a href="/contact" className="text-primary-600 hover:underline">contact us</a>. 
-          We're happy to provide more details.
+          We are happy to provide more details.
         </p>
 
         <div className="bg-primary-50 border border-primary-200 rounded-xl p-6 mt-8">
