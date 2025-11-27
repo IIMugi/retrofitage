@@ -1,0 +1,105 @@
+---
+description: Browser MCP araçları ile test yapma kuralları
+globs:
+alwaysApply: true
+---
+
+# 🌐 Browser Test Kuralları (@Browser Zorunlu)
+
+## ⚠️ KRİTİK: Her Feature @Browser ile Test Edilmeli!
+
+Frontend geliştirmede, her yeni özellik veya değişiklik **Browser MCP araçları** ile test edilmelidir.
+
+## Test Akışı
+
+### 1. Sayfa Navigasyonu
+```
+mcp_cursor-browser-extension_browser_navigate
+url: "http://localhost:3000"
+```
+
+### 2. Sayfa Snapshot Al (Elementleri Gör)
+```
+mcp_cursor-browser-extension_browser_snapshot
+```
+> Screenshot yerine snapshot tercih et - elementlerle etkileşim için daha iyi
+
+### 3. Element Etkileşimi
+```
+mcp_cursor-browser-extension_browser_click
+element: "Navigation menu button"
+ref: "button[aria-label='menu']"
+```
+
+### 4. Form Doldurma
+```
+mcp_cursor-browser-extension_browser_type
+element: "Search input"
+ref: "input[name='search']"
+text: "walk-in tubs"
+```
+
+### 5. Görsel İnceleme (Gerektiğinde)
+```
+mcp_cursor-browser-extension_browser_take_screenshot
+fullPage: true
+```
+
+## Test Senaryoları
+
+### UI Testleri
+- [ ] Responsive tasarım (resize ile test et)
+- [ ] Navigation çalışıyor mu
+- [ ] Butonlar tıklanabilir mi
+- [ ] Formlar submit oluyor mu
+
+### SEO Testleri
+- [ ] Meta taglar render ediliyor mu
+- [ ] Schema markup doğru mu
+- [ ] Canonical URL var mı
+
+### Erişilebilirlik Testleri
+- [ ] Keyboard navigation
+- [ ] Focus states
+- [ ] Alt textler
+
+## Örnek Test Workflow
+
+```javascript
+// Yeni feature geliştirdikten sonra:
+
+1. Navigate: localhost:3000/bathroom-safety/walk-in-tubs
+2. Snapshot: Sayfa elementlerini al
+3. Click: "Read More" butonuna tıkla
+4. Snapshot: Yeni sayfayı doğrula
+5. Screenshot: Görsel kontrol için kaydet
+```
+
+## Console ve Network İzleme
+
+### Console Mesajlarını Kontrol Et
+```
+mcp_cursor-browser-extension_browser_console_messages
+```
+> Hata var mı kontrol et
+
+### Network İsteklerini İzle
+```
+mcp_cursor-browser-extension_browser_network_requests
+```
+> API çağrıları başarılı mı?
+
+## ❌ YAPILMAMASI GEREKENLER
+
+- Feature'ı test etmeden commit etmek
+- Sadece kod yazıp "çalışır" varsaymak
+- Manuel test için kullanıcıya bırakmak
+
+## ✅ YAPILMASI GEREKENLER
+
+- Her UI değişikliğini browser'da test et
+- Responsive için farklı viewport'larda kontrol et
+- Console hatalarını kontrol et
+- Network isteklerini doğrula
+
+**UNUTMA: Geliştirme bitince @Browser ile test yap!**

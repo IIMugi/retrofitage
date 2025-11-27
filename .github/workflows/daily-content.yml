@@ -1,0 +1,126 @@
+# RetrofitAge - Daily Automatic Content Generation
+# Runs every day at 9:00 AM UTC (4:00 AM EST)
+# Generates 1 new article using Gemini 2.5 Pro with humanization
+# Uses 10 API keys for rate limit avoidance
+
+name: Daily Content Generation
+
+on:
+  schedule:
+    # Run daily at 9:00 AM UTC
+    - cron: '0 9 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      generate_all:
+        description: 'Generate all remaining articles'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+env:
+  # Load all 10 API keys
+  GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+  GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+  GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+  GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+  GEMINI_API_KEY_5: ${{ secrets.GEMINI_API_KEY_5 }}
+  GEMINI_API_KEY_6: ${{ secrets.GEMINI_API_KEY_6 }}
+  GEMINI_API_KEY_7: ${{ secrets.GEMINI_API_KEY_7 }}
+  GEMINI_API_KEY_8: ${{ secrets.GEMINI_API_KEY_8 }}
+  GEMINI_API_KEY_9: ${{ secrets.GEMINI_API_KEY_9 }}
+  GEMINI_API_KEY_10: ${{ secrets.GEMINI_API_KEY_10 }}
+
+jobs:
+  generate-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+      
+      - name: 🔑 Configure Git
+        run: |
+          git config --global user.name "RetrofitAge Bot"
+          git config --global user.email "bot@retrofitage.com"
+      
+      - name: 📝 Generate Daily Article
+        run: |
+          echo "🔑 API Keys loaded: checking availability..."
+          
+          # Count available keys
+          KEY_COUNT=0
+          for i in {1..10}; do
+            VAR_NAME="GEMINI_API_KEY_$i"
+            if [ -n "${!VAR_NAME}" ]; then
+              KEY_COUNT=$((KEY_COUNT + 1))
+            fi
+          done
+          echo "✅ Found $KEY_COUNT API keys"
+          
+          if [ "${{ github.event.inputs.generate_all }}" == "true" ]; then
+            echo "📝 Generating ALL remaining articles..."
+            python scripts/generate_content.py --all --no-push
+          else
+            echo "📝 Generating next article..."
+            python scripts/generate_content.py --no-push
+          fi
+      
+      - name: 📤 Commit and Push
+        run: |
+          git add content/posts/*.mdx scripts/generated.json
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No new content generated"
+          else
+            git commit -m "📝 Auto-generated content - $(date +'%Y-%m-%d')"
+            git push origin main
+            echo "✅ Content pushed to repository"
+          fi
+      
+      - name: 🚀 Trigger Vercel Deploy
+        if: success()
+        run: |
+          echo "✅ Changes pushed - Vercel will auto-deploy"
+          # Uncomment below to use deploy hook:
+          # curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+
+  # Status notification
+  notify:
+    needs: generate-content
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: 📊 Report Status
+        run: |
+          if [ "${{ needs.generate-content.result }}" == "success" ]; then
+            echo "✅ Daily content generation successful!"
+            echo "📅 Date: $(date)"
+          else
+            echo "❌ Daily content generation failed!"
+            echo "📅 Date: $(date)"
+            # Optionally send notification via webhook
+            # curl -X POST -H "Content-Type: application/json" \
+            #   -d '{"text":"❌ RetrofitAge content generation failed!"}' \
+            #   "${{ secrets.SLACK_WEBHOOK }}"
+          fi

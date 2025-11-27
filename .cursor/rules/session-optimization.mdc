@@ -1,0 +1,97 @@
+---
+description: Tek session'da maksimum verimlilik için kurallar
+globs:
+alwaysApply: true
+---
+
+# ⚡ Session Optimizasyonu - Token Yettiği Sürece HER ŞEYİ YAP!
+
+## 🎯 Temel Prensip
+
+**"Bir session'da yapılabilecek her şeyi yap, duraklama!"**
+
+## Çalışma Stratejisi
+
+### 1. Paralel İşlemler Kullan
+- Bağımsız dosyaları **aynı anda** oku
+- Birbirinden bağımsız aramaları **paralel** yap
+- Birden fazla tool çağrısını **tek batch'te** gönder
+
+### 2. Todo Listesi ile Takip Et
+- Karmaşık görevlerde `todo_write` kullan
+- İlerlemeyi takip et
+- Tamamlananları işaretle
+
+### 3. Gereksiz Tekrarlardan Kaçın
+- Aynı dosyayı tekrar tekrar okuma
+- Context'te olan bilgiyi tekrar arama
+- Confirmation için durmadan devam et
+
+## Workflow Örneği
+
+```
+YANLIŞ:
+1. Dosya oku → Kullanıcıya sor
+2. Onay al → Kod yaz
+3. Kod göster → Onay al
+4. Test et → Sonuç bildir
+
+DOĞRU:
+1. Dosya oku + Analiz et + Kod yaz + Test et → Tam sonuç bildir
+```
+
+## Paralel Tool Çağrısı Örneği
+
+```
+// Tek batch'te:
+- read_file: prd.md
+- read_file: package.json  
+- grep: "AdUnit" pattern
+- list_dir: src/components
+```
+
+## Token Optimizasyonu
+
+### YAPILMASI GEREKENLER ✅
+- Kısa ve öz yanıtlar
+- Gereksiz açıklama yapma
+- Kod bloklarını kompakt tut
+- İşi bitir, sonra açıkla
+
+### YAPILMAMASI GEREKENLER ❌
+- Her adımda kullanıcıya sormak
+- Gereksiz uzun açıklamalar
+- "Şimdi şunu yapacağım" demeden önce yapmak
+- Aynı bilgiyi tekrar etmek
+
+## Session Hedefleri
+
+Her session'da şunları hedefle:
+
+1. **Anlama:** PRD'yi oku, projeyi anla
+2. **Planlama:** Todo list oluştur
+3. **Geliştirme:** Tüm dosyaları oluştur/düzenle
+4. **Test:** Browser ile test et
+5. **Doğrulama:** Lint kontrolü yap
+
+## Kesinti Durumunda
+
+Eğer session kesilirse:
+- Memory Bank'ı güncelle (varsa)
+- Son durumu belirt
+- Kaldığın yeri not et
+
+## Proje Spesifik Hedefler
+
+Bu projede tek session'da yapılabilecekler:
+- [ ] Next.js 14 projesi initialize
+- [ ] Tailwind CSS kurulumu
+- [ ] Temel component yapısı
+- [ ] Layout ve sayfa yapısı
+- [ ] AdUnit component'i
+- [ ] MDX entegrasyonu
+- [ ] Python Gemini script
+- [ ] 10 MDX içerik dosyası
+- [ ] Sitemap ve RSS
+
+**MOTTO: "Token var, iş var, durmak yok!"**

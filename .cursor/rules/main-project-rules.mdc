@@ -1,0 +1,53 @@
+---
+description: RetrofitAge.com projesinin ana geliştirme kuralları
+globs: 
+alwaysApply: true
+---
+
+# 🏠 RetrofitAge.com - Ana Proje Kuralları
+
+## Proje Özeti
+RetrofitAge.com, yaşlıların evlerinde güvenle yaşamasını sağlayan "Aging-in-Place" teknolojileri ve ev modifikasyonları hakkında bir niche website. AdSense geliri ve organik trafik büyümesi hedefleniyor.
+
+## Teknoloji Stack'i
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS
+- **Content:** Markdown/MDX (`content/posts/` dizininde)
+- **Otomasyon:** Python + Google Gemini API
+- **Deployment:** Vercel veya Netlify
+
+## Tasarım Kuralları
+- **Tema:** "Engineering Trust" - Profesyonel mavi/gri renk paleti
+- **Font:** Inter veya Roboto, base **18px** (erişilebilirlik için)
+- **Kontrast:** WCAG AAA standartları (#1a202c on #ffffff)
+- **Mobile First:** %70 mobil trafik beklentisi
+- **Hedef:** PageSpeed Insights 95+
+
+## SEO Gereksinimleri
+- Otomatik meta tag üretimi (Title, Description, Canonical)
+- sitemap.xml otomasyonu
+- Schema Markup: Article, FAQPage, BreadcrumbList
+- URL yapısı: `/{category}/{slug}`
+
+## Dosya Yapısı
+```
+src/
+├── app/                    # Next.js App Router
+├── components/
+│   ├── AdUnit.tsx         # AdSense placement
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   └── ...
+├── lib/
+│   └── mdx.ts             # MDX utilities
+└── content/
+    └── posts/             # MDX blog yazıları
+```
+
+## Kod Standartları
+- TypeScript kullan
+- Functional components tercih et
+- Tailwind CSS class'larını organize tut
+- Erişilebilirlik (a11y) her zaman öncelikli
+
+@prd.md

@@ -1,0 +1,59 @@
+---
+description: Memory Bank sistemini oku ve kullan - Session başlangıcında
+globs:
+alwaysApply: true
+---
+
+# 🧠 Memory Bank Sistemi
+
+## Session Başlangıcında
+
+Her yeni session'da aşağıdaki dosyaları oku:
+
+1. **`memory-bank/activeContext.md`** - Mevcut durum ve son yapılanlar
+2. **`memory-bank/progress.md`** - İlerleme takibi ve milestone'lar
+3. **`memory-bank/techContext.md`** - Teknik stack ve konfigürasyonlar
+4. **`memory-bank/projectbrief.md`** - Proje özeti
+
+## Memory Bank Yapısı
+
+```
+memory-bank/
+├── projectbrief.md    # Proje genel bakış
+├── techContext.md     # Teknik detaylar
+├── progress.md        # İlerleme takibi
+└── activeContext.md   # Aktif context ve notlar
+```
+
+## Güncelleme Kuralları
+
+### Session Sonu
+- `progress.md` dosyasını güncelle
+- Tamamlanan görevleri işaretle
+- Sonraki adımları belirt
+
+### Önemli Kararlar
+- `activeContext.md` dosyasına ekle
+- Karar ve gerekçeyi not et
+
+### Teknik Değişiklikler
+- `techContext.md` dosyasını güncelle
+- Yeni paketleri ekle
+- Konfigürasyon değişikliklerini not et
+
+## Hızlı Başlangıç Komutu
+
+Session başında şunu yap:
+```
+1. read_file: memory-bank/activeContext.md
+2. read_file: memory-bank/progress.md
+3. Kaldığın yerden devam et
+```
+
+## Session Sonu Checklist
+
+- [ ] Progress güncellendi mi?
+- [ ] Yeni kararlar not edildi mi?
+- [ ] Sonraki session için context hazır mı?
+
+**UNUTMA: Memory Bank proje hafızandır, güncel tut!**

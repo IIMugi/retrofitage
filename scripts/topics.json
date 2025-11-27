@@ -1,0 +1,92 @@
+{
+  "topics": [
+    {
+      "title": "Walk-in Tubs vs. Curbless Showers: A Cost & Safety Analysis for 2025",
+      "category": "bathroom-safety",
+      "slug": "walk-in-tubs-vs-curbless-showers",
+      "keywords": ["walk-in tubs", "curbless showers", "bathroom safety", "senior bathroom", "aging in place bathroom"]
+    },
+    {
+      "title": "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed",
+      "category": "smart-monitoring",
+      "slug": "radar-fall-detection-systems",
+      "keywords": ["fall detection", "radar monitoring", "non-wearable sensors", "elderly monitoring", "smart home safety"]
+    },
+    {
+      "title": "Does Medicare Cover Stairlifts? The Complete Financial Guide",
+      "category": "finance-insurance",
+      "slug": "medicare-stairlift-coverage",
+      "keywords": ["medicare stairlift", "stairlift insurance", "stairlift financing", "medicare dme", "mobility equipment coverage"]
+    },
+    {
+      "title": "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide",
+      "category": "smart-home",
+      "slug": "alexa-care-hub-seniors-guide",
+      "keywords": ["alexa for seniors", "smart home elderly", "voice assistant care", "amazon echo senior", "alexa care hub"]
+    },
+    {
+      "title": "How to Widen Doorways for Wheelchair Access: A Retrofit Guide",
+      "category": "structural-retrofit",
+      "slug": "widen-doorways-wheelchair-access",
+      "keywords": ["doorway widening", "wheelchair access", "ada doorway", "home modification wheelchair", "accessible doorways"]
+    },
+    {
+      "title": "Best Granny Pods and ADUs: Adding Senior Housing to Your Backyard",
+      "category": "housing-options",
+      "slug": "granny-pods-adu-guide",
+      "keywords": ["granny pods", "adu senior housing", "backyard cottage", "in-law suite", "multigenerational housing"]
+    },
+    {
+      "title": "Automatic Stove Turn-Off Devices: Preventing Kitchen Fires for Dementia Patients",
+      "category": "kitchen-safety",
+      "slug": "automatic-stove-shutoff-dementia",
+      "keywords": ["stove shutoff", "dementia kitchen safety", "fire prevention elderly", "automatic stove guard", "kitchen safety seniors"]
+    },
+    {
+      "title": "Lighting Design for Aging Eyes: Lux Levels and LED Recommendations",
+      "category": "electrical-lighting",
+      "slug": "lighting-design-aging-eyes",
+      "keywords": ["senior lighting", "aging eyes light", "lux levels elderly", "led lighting seniors", "home lighting safety"]
+    },
+    {
+      "title": "Reverse Mortgage for Home Improvements: Is It Worth It?",
+      "category": "finance",
+      "slug": "reverse-mortgage-home-improvements",
+      "keywords": ["reverse mortgage", "hecm home improvement", "senior home equity", "aging in place financing", "home modification loans"]
+    },
+    {
+      "title": "DIY Grab Bar Installation: Tiles, Fiberglass, and Stud Finding Explained",
+      "category": "bathroom-safety",
+      "slug": "diy-grab-bar-installation",
+      "keywords": ["grab bar installation", "bathroom grab bars", "ada grab bars", "senior bathroom safety", "diy bathroom modification"]
+    }
+  ],
+  "future_topics": [
+    {
+      "title": "Best Medical Alert Systems Compared: Life Alert vs Medical Guardian vs Bay Alarm",
+      "category": "smart-monitoring",
+      "slug": "medical-alert-systems-comparison"
+    },
+    {
+      "title": "Zero-Threshold Shower Pans: Complete Installation Guide",
+      "category": "bathroom-safety",
+      "slug": "zero-threshold-shower-installation"
+    },
+    {
+      "title": "Smart Pill Dispensers for Medication Management",
+      "category": "smart-home",
+      "slug": "smart-pill-dispensers-guide"
+    },
+    {
+      "title": "Home Elevator vs Stairlift: Which is Right for You?",
+      "category": "structural-retrofit",
+      "slug": "home-elevator-vs-stairlift"
+    },
+    {
+      "title": "Medicaid Waiver Programs for Home Modifications",
+      "category": "finance-insurance",
+      "slug": "medicaid-waiver-home-modifications"
+    }
+  ]
+}
+

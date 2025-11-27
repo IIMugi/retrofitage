@@ -1,0 +1,66 @@
+---
+description: Context7 MCP kullanımı zorunludur - Güncel dokümantasyon için
+globs:
+alwaysApply: true
+---
+
+# 📚 Context7 Zorunlu Kullanım Kuralı
+
+## ⚠️ KRİTİK: Context7 MUTLAKA Kullanılmalı!
+
+Herhangi bir kütüphane, framework veya paket ile çalışırken **Context7 MCP araçları ZORUNLUDUR**.
+
+## Neden Context7?
+
+1. **Güncel Dokümantasyon:** Eğitim verilerinde olmayan en son API değişikliklerini içerir
+2. **Doğru Kod Örnekleri:** Deprecated metodlar yerine güncel çözümler
+3. **Sürüm Uyumluluğu:** Proje sürümüne uygun bilgi
+
+## Kullanım Sırası
+
+### Adım 1: Library ID Bul
+```
+mcp_context7_resolve-library-id
+libraryName: "next.js" | "tailwindcss" | "react" | vb.
+```
+
+### Adım 2: Dokümantasyon Çek
+```
+mcp_context7_get-library-docs
+context7CompatibleLibraryID: "/vercel/next.js"
+topic: "app router" | "api routes" | vb.
+mode: "code" (API referansı) veya "info" (kavramsal bilgi)
+```
+
+## Bu Projede Sık Kullanılacak Library'ler
+
+| Paket | Context7 ID | Kullanım Alanı |
+|-------|-------------|----------------|
+| Next.js 14 | `/vercel/next.js` | App Router, SSR, API |
+| Tailwind CSS | `/tailwindcss/tailwindcss` | Styling |
+| React | `/facebook/react` | Hooks, Components |
+| MDX | `/mdx-js/mdx` | Content rendering |
+
+## ❌ YAPILMAMASI GEREKENLER
+
+- Kütüphane API'sini hatırdan yazmak
+- Eski syntax kullanmak
+- Context7 çağırmadan kod önermek
+
+## ✅ YAPILMASI GEREKENLER
+
+- Her yeni kütüphane kullanımında önce Context7'den doküman çek
+- Emin olmadığın API'ler için Context7 ile doğrula
+- Güncel örnekleri referans al
+
+## Örnek Workflow
+
+```
+1. Kullanıcı: "Next.js 14'te dynamic route nasıl yapılır?"
+2. AI: İlk önce Context7 çağır:
+   - resolve-library-id: "next.js"
+   - get-library-docs: topic="dynamic routes", mode="code"
+3. AI: Gelen güncel dokümantasyona göre cevap ver
+```
+
+**UNUTMA: Context7 olmadan framework/library kodu yazma!**
