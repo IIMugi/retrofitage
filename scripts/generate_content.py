@@ -374,12 +374,16 @@ MUST INCLUDE:
 Write now as a seasoned professional sharing hard-earned knowledge:"""
 
 
-async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retries: int = 3) -> str:
-    """Retry ve key rotation ile Gemini çağır"""
+async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retries: int = 15) -> str:
+    """Retry ve key rotation ile Gemini çağır - 10 key için 15 deneme"""
     last_error = None
     
     for attempt in range(max_retries):
         api_key = key_manager.get_key()
+        
+        if not api_key:
+            print("❌ Tüm API key'ler tükendi!")
+            break
         
         try:
             model = create_model(api_key)
@@ -390,11 +394,12 @@ async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retri
             last_error = e
             error_msg = str(e).lower()
             
-            if any(x in error_msg for x in ['429', 'quota', 'rate', 'exhausted']):
+            if any(x in error_msg for x in ['429', 'quota', 'rate', 'exhausted', 'resource']):
                 key_manager.mark_exhausted(api_key)
-                print(f"⚠️ Rate limit, key değiştiriliyor... (deneme {attempt + 1})")
-                time.sleep(2)
+                print(f"⚠️ Rate limit, key değiştiriliyor... (deneme {attempt + 1}/{max_retries})")
+                time.sleep(5)  # Daha uzun bekleme
             else:
+                print(f"❌ Beklenmeyen hata: {e}")
                 raise e
     
     raise last_error
