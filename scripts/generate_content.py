@@ -117,19 +117,36 @@ class APIKeyManager:
 # CONTENT HISTORY MANAGER
 # ============================================
 
+def scan_existing_posts() -> List[str]:
+    """Mevcut .mdx dosyalarının slug'larını tara"""
+    existing_slugs = []
+    if CONTENT_DIR.exists():
+        for mdx_file in CONTENT_DIR.glob("*.mdx"):
+            slug = mdx_file.stem  # Dosya adından .mdx uzantısını çıkar
+            existing_slugs.append(slug)
+    return existing_slugs
+
+
 def load_history() -> dict:
     """İçerik geçmişini yükle"""
     if HISTORY_FILE.exists():
         with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            history = json.load(f)
+            # Mevcut dosyaları da kontrol et
+            existing = scan_existing_posts()
+            for slug in existing:
+                if slug not in history.get("publishedSlugs", []):
+                    history["publishedSlugs"].append(slug)
+            return history
     
-    # Yeni oluştur
+    # Yeni oluştur - mevcut dosyaları tara
+    existing_slugs = scan_existing_posts()
     history = {
-        "publishedSlugs": [],
+        "publishedSlugs": existing_slugs,
         "publishedTitles": [],
         "publishedKeywords": [],
         "lastCategory": None,
-        "totalPosts": 0,
+        "totalPosts": len(existing_slugs),
         "lastPublishDate": None,
         "categoryRotation": 0
     }
