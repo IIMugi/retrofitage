@@ -230,11 +230,11 @@ Return the full rewritten article:"""
 def create_model(api_key: str):
     genai.configure(api_key=api_key)
     return genai.GenerativeModel(
-        model_name="gemini-2.0-flash-exp",
+        model_name="gemini-2.5-pro",
         generation_config={
             "temperature": 0.8,
             "top_p": 0.95,
-            "max_output_tokens": 8192,
+            "max_output_tokens": 16384,  # 2.5 Pro daha yüksek limit destekliyor
         },
         system_instruction=SYSTEM_PROMPT
     )
