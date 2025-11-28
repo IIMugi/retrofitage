@@ -40,13 +40,16 @@ body {
   --tw-prose-td-borders: #334155;
 }
 
-/* Enhanced dark mode prose styles */
-.dark .prose {
-  color: #e2e8f0;
+/* Enhanced dark mode prose styles - using !important for overrides */
+.dark .prose,
+.dark .prose-lg,
+.dark .prose-slate {
+  color: #f1f5f9 !important;
 }
 
-.dark .prose p {
-  color: #e2e8f0;
+.dark .prose p,
+.dark .prose-lg p {
+  color: #f1f5f9 !important;
 }
 
 .dark .prose h1,
@@ -54,51 +57,75 @@ body {
 .dark .prose h3,
 .dark .prose h4,
 .dark .prose h5,
-.dark .prose h6 {
-  color: #ffffff;
+.dark .prose h6,
+.dark .prose-lg h1,
+.dark .prose-lg h2,
+.dark .prose-lg h3,
+.dark .prose-lg h4,
+.dark .prose-lg h5,
+.dark .prose-lg h6 {
+  color: #ffffff !important;
 }
 
-.dark .prose strong {
-  color: #f8fafc;
+.dark .prose strong,
+.dark .prose-lg strong {
+  color: #ffffff !important;
 }
 
-.dark .prose a {
-  color: #60a5fa;
+.dark .prose a,
+.dark .prose-lg a {
+  color: #60a5fa !important;
 }
 
-.dark .prose a:hover {
-  color: #93c5fd;
+.dark .prose a:hover,
+.dark .prose-lg a:hover {
+  color: #93c5fd !important;
 }
 
-.dark .prose blockquote {
-  color: #f1f5f9;
-  border-left-color: #3b82f6;
+.dark .prose blockquote,
+.dark .prose-lg blockquote {
+  color: #f8fafc !important;
+  border-left-color: #3b82f6 !important;
+  background-color: rgba(59, 130, 246, 0.1);
+  padding: 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.dark .prose code {
-  color: #f8fafc;
-  background-color: #1e293b;
+.dark .prose code,
+.dark .prose-lg code {
+  color: #f8fafc !important;
+  background-color: #1e293b !important;
 }
 
-.dark .prose pre {
-  background-color: #1e293b;
-  color: #e2e8f0;
+.dark .prose pre,
+.dark .prose-lg pre {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
 }
 
-.dark .prose li {
-  color: #e2e8f0;
+.dark .prose li,
+.dark .prose-lg li {
+  color: #f1f5f9 !important;
 }
 
-.dark .prose li::marker {
-  color: #94a3b8;
+.dark .prose li::marker,
+.dark .prose-lg li::marker {
+  color: #94a3b8 !important;
 }
 
-.dark .prose th {
-  color: #f1f5f9;
+.dark .prose th,
+.dark .prose-lg th {
+  color: #f8fafc !important;
 }
 
-.dark .prose td {
-  color: #e2e8f0;
+.dark .prose td,
+.dark .prose-lg td {
+  color: #f1f5f9 !important;
+}
+
+.dark .prose em,
+.dark .prose-lg em {
+  color: #e2e8f0 !important;
 }
 
 /* Sidebar dark mode improvements */
