@@ -1,35 +1,17 @@
 import Link from 'next/link'
 import { SidebarAd } from './AdUnit'
 import NewsletterForm from './NewsletterForm'
+import { getAllPosts } from '@/lib/mdx'
 
-interface Post {
-  slug: string
-  title: string
-  category: string
-  date: string
-}
-
-interface SidebarProps {
-  trendingPosts?: Post[]
-  highValuePosts?: Post[]
-}
-
-export default function Sidebar({ trendingPosts = [], highValuePosts = [] }: SidebarProps) {
-  // Default posts if none provided
-  const defaultTrending: Post[] = [
-    { slug: 'walk-in-tubs-vs-curbless-showers', title: 'Walk-in Tubs vs. Curbless Showers', category: 'bathroom-safety', date: '2025-01-15' },
-    { slug: 'radar-fall-detection', title: 'Radar-Based Fall Detection Systems', category: 'smart-monitoring', date: '2025-01-14' },
-    { slug: 'stairlift-medicare-coverage', title: 'Does Medicare Cover Stairlifts?', category: 'finance-insurance', date: '2025-01-13' },
-  ]
-
-  const defaultHighValue: Post[] = [
-    { slug: 'reverse-mortgage-home-improvements', title: 'Reverse Mortgage for Home Improvements', category: 'finance', date: '2025-01-12' },
-    { slug: 'best-granny-pods', title: 'Best Granny Pods and ADUs', category: 'housing-options', date: '2025-01-11' },
-    { slug: 'smart-home-alexa-guide', title: 'Smart Home Setup for Seniors', category: 'smart-home', date: '2025-01-10' },
-  ]
-
-  const trending = trendingPosts.length > 0 ? trendingPosts : defaultTrending
-  const highValue = highValuePosts.length > 0 ? highValuePosts : defaultHighValue
+export default async function Sidebar() {
+  // Get all posts dynamically
+  const allPosts = await getAllPosts()
+  
+  // Get latest posts for trending (first 3)
+  const trending = allPosts.slice(0, 3)
+  
+  // Get different category posts for high value section
+  const highValue = allPosts.slice(0, 3)
 
   return (
     <aside className="w-full lg:w-80 space-y-8">
@@ -45,21 +27,27 @@ export default function Sidebar({ trendingPosts = [], highValuePosts = [] }: Sid
           Trending Retrofits
         </h3>
         <ul className="space-y-4">
-          {trending.map((post, index) => (
-            <li key={post.slug}>
-              <Link 
-                href={`/${post.category}/${post.slug}`}
-                className="group flex gap-3"
-              >
-                <span className="text-2xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span className="text-base text-slate-600 dark:text-slate-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
-                  {post.title}
-                </span>
-              </Link>
+          {trending.length > 0 ? (
+            trending.map((post, index) => (
+              <li key={post.slug}>
+                <Link 
+                  href={`/${post.category}/${post.slug}`}
+                  className="group flex gap-3"
+                >
+                  <span className="text-2xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-base text-slate-600 dark:text-slate-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
+                    {post.title.length > 40 ? post.title.substring(0, 40) + '...' : post.title}
+                  </span>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li className="text-slate-500 dark:text-slate-400 text-sm">
+              New articles coming soon!
             </li>
-          ))}
+          )}
         </ul>
       </div>
 
@@ -72,21 +60,27 @@ export default function Sidebar({ trendingPosts = [], highValuePosts = [] }: Sid
           High Value Guides
         </h3>
         <ul className="space-y-3">
-          {highValue.map((post) => (
-            <li key={post.slug}>
-              <Link 
-                href={`/${post.category}/${post.slug}`}
-                className="block p-3 bg-white dark:bg-slate-800 rounded-lg hover:shadow-md transition-shadow group"
-              >
-                <span className="text-base text-slate-700 dark:text-slate-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors font-medium">
-                  {post.title}
-                </span>
-                <span className="text-sm text-slate-400 dark:text-slate-500 block mt-1">
-                  {post.category.replace('-', ' ')}
-                </span>
-              </Link>
+          {highValue.length > 0 ? (
+            highValue.map((post) => (
+              <li key={post.slug}>
+                <Link 
+                  href={`/${post.category}/${post.slug}`}
+                  className="block p-3 bg-white dark:bg-slate-800 rounded-lg hover:shadow-md transition-shadow group"
+                >
+                  <span className="text-base text-slate-700 dark:text-slate-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors font-medium line-clamp-2">
+                    {post.title}
+                  </span>
+                  <span className="text-sm text-slate-400 dark:text-slate-500 block mt-1">
+                    {post.category?.replace(/-/g, ' ')}
+                  </span>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li className="text-slate-500 dark:text-slate-400 text-sm p-3">
+              New guides coming soon!
             </li>
-          ))}
+          )}
         </ul>
       </div>
 
