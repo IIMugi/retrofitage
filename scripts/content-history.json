@@ -1,10 +1,20 @@
 {
-  "publishedSlugs": [],
-  "publishedTitles": [],
-  "publishedKeywords": [],
-  "lastCategory": null,
-  "totalPosts": 0,
-  "lastPublishDate": null,
-  "categoryRotation": 0
+  "publishedSlugs": [
+    "walk-in-tubs-vs-curbless-showers",
+    "radar-fall-detection-systems"
+  ],
+  "publishedTitles": [
+    "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed"
+  ],
+  "publishedKeywords": [
+    "fall detection",
+    "radar monitoring",
+    "non-wearable sensors",
+    "elderly monitoring",
+    "smart home safety"
+  ],
+  "lastCategory": "smart-monitoring",
+  "totalPosts": 1,
+  "lastPublishDate": "2025-11-28T06:51:58.951891",
+  "categoryRotation": 1
 }
-
