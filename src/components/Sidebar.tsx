@@ -34,10 +34,10 @@ export default async function Sidebar() {
                   href={`/${post.category}/${post.slug}`}
                   className="group flex gap-3"
                 >
-                  <span className="text-2xl font-bold text-slate-300 dark:text-slate-600 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
+                  <span className="text-2xl font-bold text-slate-300 dark:text-slate-500 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-base text-slate-600 dark:text-slate-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
+                  <span className="text-base text-slate-600 dark:text-slate-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">
                     {post.title.length > 40 ? post.title.substring(0, 40) + '...' : post.title}
                   </span>
                 </Link>
@@ -70,7 +70,7 @@ export default async function Sidebar() {
                   <span className="text-base text-slate-700 dark:text-slate-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors font-medium line-clamp-2">
                     {post.title}
                   </span>
-                  <span className="text-sm text-slate-400 dark:text-slate-500 block mt-1">
+                  <span className="text-sm text-slate-500 dark:text-slate-400 block mt-1">
                     {post.category?.replace(/-/g, ' ')}
                   </span>
                 </Link>

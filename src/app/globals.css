@@ -9,8 +9,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
   }
 }
 
@@ -18,6 +18,104 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark mode improvements for better readability */
+.dark {
+  --tw-prose-body: #e2e8f0;
+  --tw-prose-headings: #ffffff;
+  --tw-prose-lead: #cbd5e1;
+  --tw-prose-links: #60a5fa;
+  --tw-prose-bold: #f8fafc;
+  --tw-prose-counters: #94a3b8;
+  --tw-prose-bullets: #64748b;
+  --tw-prose-hr: #334155;
+  --tw-prose-quotes: #f1f5f9;
+  --tw-prose-quote-borders: #3b82f6;
+  --tw-prose-captions: #94a3b8;
+  --tw-prose-code: #f8fafc;
+  --tw-prose-pre-code: #e2e8f0;
+  --tw-prose-pre-bg: #1e293b;
+  --tw-prose-th-borders: #475569;
+  --tw-prose-td-borders: #334155;
+}
+
+/* Enhanced dark mode prose styles */
+.dark .prose {
+  color: #e2e8f0;
+}
+
+.dark .prose p {
+  color: #e2e8f0;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: #ffffff;
+}
+
+.dark .prose strong {
+  color: #f8fafc;
+}
+
+.dark .prose a {
+  color: #60a5fa;
+}
+
+.dark .prose a:hover {
+  color: #93c5fd;
+}
+
+.dark .prose blockquote {
+  color: #f1f5f9;
+  border-left-color: #3b82f6;
+}
+
+.dark .prose code {
+  color: #f8fafc;
+  background-color: #1e293b;
+}
+
+.dark .prose pre {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+.dark .prose li {
+  color: #e2e8f0;
+}
+
+.dark .prose li::marker {
+  color: #94a3b8;
+}
+
+.dark .prose th {
+  color: #f1f5f9;
+}
+
+.dark .prose td {
+  color: #e2e8f0;
+}
+
+/* Sidebar dark mode improvements */
+.dark .text-slate-300 {
+  color: #e2e8f0;
+}
+
+.dark .text-slate-400 {
+  color: #cbd5e1;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8;
+}
+
+.dark .text-slate-600 {
+  color: #cbd5e1;
 }
 
 @layer utilities {
