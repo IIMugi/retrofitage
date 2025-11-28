@@ -7,8 +7,8 @@ name: Daily Content Generation
 
 on:
   schedule:
-    # Run daily at 9:00 AM UTC
-    - cron: '0 9 * * *'
+    # Run daily at 6:00 AM UTC (9:00 AM Turkey Time)
+    - cron: '0 6 * * *'
   
   # Allow manual trigger
   workflow_dispatch:
