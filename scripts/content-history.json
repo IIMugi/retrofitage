@@ -3,12 +3,14 @@
     "walk-in-tubs-vs-curbless-showers",
     "radar-fall-detection-systems",
     "medicare-stairlift-coverage",
-    "alexa-care-hub-seniors-guide"
+    "alexa-care-hub-seniors-guide",
+    "widen-doorways-wheelchair-access"
   ],
   "publishedTitles": [
     "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed",
     "Does Medicare Cover Stairlifts? The Complete Financial Guide",
-    "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide"
+    "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide",
+    "How to Widen Doorways for Wheelchair Access: A Retrofit Guide"
   ],
   "publishedKeywords": [
     "fall detection",
@@ -25,10 +27,15 @@
     "smart home elderly",
     "voice assistant care",
     "amazon echo senior",
-    "alexa care hub"
+    "alexa care hub",
+    "doorway widening",
+    "wheelchair access",
+    "ada doorway",
+    "home modification wheelchair",
+    "accessible doorways"
   ],
-  "lastCategory": "smart-home",
-  "totalPosts": 3,
-  "lastPublishDate": "2025-11-30T06:37:42.952741",
-  "categoryRotation": 3
+  "lastCategory": "structural-retrofit",
+  "totalPosts": 4,
+  "lastPublishDate": "2025-12-01T06:41:19.815670",
+  "categoryRotation": 4
 }
