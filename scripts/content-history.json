@@ -4,13 +4,15 @@
     "radar-fall-detection-systems",
     "medicare-stairlift-coverage",
     "alexa-care-hub-seniors-guide",
-    "widen-doorways-wheelchair-access"
+    "widen-doorways-wheelchair-access",
+    "granny-pods-adu-guide"
   ],
   "publishedTitles": [
     "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed",
     "Does Medicare Cover Stairlifts? The Complete Financial Guide",
     "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide",
-    "How to Widen Doorways for Wheelchair Access: A Retrofit Guide"
+    "How to Widen Doorways for Wheelchair Access: A Retrofit Guide",
+    "Best Granny Pods and ADUs: Adding Senior Housing to Your Backyard"
   ],
   "publishedKeywords": [
     "fall detection",
@@ -32,10 +34,15 @@
     "wheelchair access",
     "ada doorway",
     "home modification wheelchair",
-    "accessible doorways"
+    "accessible doorways",
+    "granny pods",
+    "adu senior housing",
+    "backyard cottage",
+    "in-law suite",
+    "multigenerational housing"
   ],
-  "lastCategory": "structural-retrofit",
-  "totalPosts": 4,
-  "lastPublishDate": "2025-12-01T06:41:19.815670",
-  "categoryRotation": 4
+  "lastCategory": "housing-options",
+  "totalPosts": 5,
+  "lastPublishDate": "2025-12-02T06:40:12.031020",
+  "categoryRotation": 5
 }
