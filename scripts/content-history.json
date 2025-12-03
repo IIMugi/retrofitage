@@ -5,14 +5,16 @@
     "medicare-stairlift-coverage",
     "alexa-care-hub-seniors-guide",
     "widen-doorways-wheelchair-access",
-    "granny-pods-adu-guide"
+    "granny-pods-adu-guide",
+    "automatic-stove-shutoff-dementia"
   ],
   "publishedTitles": [
     "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed",
     "Does Medicare Cover Stairlifts? The Complete Financial Guide",
     "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide",
     "How to Widen Doorways for Wheelchair Access: A Retrofit Guide",
-    "Best Granny Pods and ADUs: Adding Senior Housing to Your Backyard"
+    "Best Granny Pods and ADUs: Adding Senior Housing to Your Backyard",
+    "Automatic Stove Turn-Off Devices: Preventing Kitchen Fires for Dementia Patients"
   ],
   "publishedKeywords": [
     "fall detection",
@@ -39,10 +41,15 @@
     "adu senior housing",
     "backyard cottage",
     "in-law suite",
-    "multigenerational housing"
+    "multigenerational housing",
+    "stove shutoff",
+    "dementia kitchen safety",
+    "fire prevention elderly",
+    "automatic stove guard",
+    "kitchen safety seniors"
   ],
-  "lastCategory": "housing-options",
-  "totalPosts": 5,
-  "lastPublishDate": "2025-12-02T06:40:12.031020",
-  "categoryRotation": 5
+  "lastCategory": "kitchen-safety",
+  "totalPosts": 6,
+  "lastPublishDate": "2025-12-03T06:40:01.290495",
+  "categoryRotation": 6
 }
