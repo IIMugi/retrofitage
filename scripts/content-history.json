@@ -6,7 +6,8 @@
     "alexa-care-hub-seniors-guide",
     "widen-doorways-wheelchair-access",
     "granny-pods-adu-guide",
-    "automatic-stove-shutoff-dementia"
+    "automatic-stove-shutoff-dementia",
+    "lighting-design-aging-eyes"
   ],
   "publishedTitles": [
     "Radar-Based Fall Detection: Non-Wearable Monitoring Systems Reviewed",
@@ -14,7 +15,8 @@
     "Smart Home Setup for Seniors: The Ultimate Amazon Alexa Care Hub Guide",
     "How to Widen Doorways for Wheelchair Access: A Retrofit Guide",
     "Best Granny Pods and ADUs: Adding Senior Housing to Your Backyard",
-    "Automatic Stove Turn-Off Devices: Preventing Kitchen Fires for Dementia Patients"
+    "Automatic Stove Turn-Off Devices: Preventing Kitchen Fires for Dementia Patients",
+    "Lighting Design for Aging Eyes: Lux Levels and LED Recommendations"
   ],
   "publishedKeywords": [
     "fall detection",
@@ -46,10 +48,15 @@
     "dementia kitchen safety",
     "fire prevention elderly",
     "automatic stove guard",
-    "kitchen safety seniors"
+    "kitchen safety seniors",
+    "senior lighting",
+    "aging eyes light",
+    "lux levels elderly",
+    "led lighting seniors",
+    "home lighting safety"
   ],
-  "lastCategory": "kitchen-safety",
-  "totalPosts": 6,
-  "lastPublishDate": "2025-12-03T06:40:01.290495",
-  "categoryRotation": 6
+  "lastCategory": "electrical-lighting",
+  "totalPosts": 7,
+  "lastPublishDate": "2025-12-04T06:40:01.433745",
+  "categoryRotation": 7
 }
