@@ -33,8 +33,10 @@ export default async function Sidebar() {
                 <Link 
                   href={`/${post.category}/${post.slug}`}
                   className="group flex gap-3"
+                  aria-label={`Read article: ${post.title}`}
+                  title={post.title}
                 >
-                  <span className="text-2xl font-bold text-slate-300 dark:text-slate-500 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
+                  <span className="text-2xl font-bold text-slate-300 dark:text-slate-500 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors" aria-hidden="true">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <span className="text-base text-slate-600 dark:text-slate-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-snug">

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getPostsByCategory, getAllCategories } from '@/lib/mdx'
 import Sidebar from '@/components/Sidebar'
@@ -117,17 +118,20 @@ export default async function CategoryPage({ params }: PageProps) {
                     className="block group"
                   >
                     <article className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all flex flex-col md:flex-row">
-                      {/* Thumbnail */}
+                      {/* Thumbnail - Fixed dimensions to prevent CLS */}
                       {post.image ? (
-                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 relative overflow-hidden">
-                          <img
+                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 relative overflow-hidden" style={{ minHeight: '192px' }}>
+                          <Image
                             src={post.image}
                             alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 288px"
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
                           />
                         </div>
                       ) : (
-                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900 dark:to-blue-900 flex items-center justify-center">
+                        <div className="md:w-72 h-48 md:h-auto flex-shrink-0 bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900 dark:to-blue-900 flex items-center justify-center" style={{ minHeight: '192px' }}>
                           <span className="text-5xl">{info.icon}</span>
                         </div>
                       )}

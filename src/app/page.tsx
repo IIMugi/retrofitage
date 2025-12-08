@@ -111,8 +111,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Ad Unit */}
-      <LeaderboardAd />
+      {/* Ad Unit - Fixed height container to prevent CLS */}
+      <div style={{ minHeight: '112px', contain: 'layout' }}>
+        <LeaderboardAd />
+      </div>
 
       {/* Latest Articles + Sidebar */}
       <section className="py-16 bg-slate-50 dark:bg-slate-800">
@@ -131,13 +133,15 @@ export default async function HomePage() {
                   className="block mb-8 group"
                 >
                   <article className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-                    <div className="aspect-video bg-slate-200 dark:bg-slate-700 relative">
+                    <div className="aspect-video bg-slate-200 dark:bg-slate-700 relative" style={{ minHeight: '200px' }}>
                       {featuredPost.image ? (
-          <Image
+                        <Image
                           src={featuredPost.image}
                           alt={featuredPost.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                           className="object-cover"
+                          priority
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center text-6xl bg-gradient-to-br from-primary-100 to-blue-100 dark:from-primary-900 dark:to-blue-900">
@@ -177,13 +181,15 @@ export default async function HomePage() {
                     className="group"
                   >
                     <article className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
-                      <div className="aspect-[16/9] bg-slate-100 dark:bg-slate-700 relative">
+                      <div className="aspect-[16/9] bg-slate-100 dark:bg-slate-700 relative" style={{ minHeight: '150px' }}>
                         {post.image ? (
-          <Image
+                          <Image
                             src={post.image}
                             alt={post.title}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                             className="object-cover"
+                            loading="lazy"
                           />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center text-4xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">

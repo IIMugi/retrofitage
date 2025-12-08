@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +10,9 @@ const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   variable: '--font-inter',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -72,33 +76,33 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
-        {/* Prevent FOUC for dark mode */}
+        {/* Prevent FOUC for dark mode - inline critical script */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                if (theme === 'dark') document.documentElement.classList.add('dark');
-              } catch (e) {}
-            `,
+            __html: `try{const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}`,
           }}
         />
-        {/* AdSense Script */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-          crossOrigin="anonymous"
-        />
-        {/* Preconnect for performance */}
+        {/* DNS Prefetch for 3rd party resources */}
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://www.googletagservices.com" />
+        {/* Preconnect for fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
+      {/* AdSense Script - Lazy loaded to prevent render blocking */}
+      {process.env.NEXT_PUBLIC_ADSENSE_ID && (
+        <Script
+          id="adsense-script"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
+      )}
       <body className="font-sans bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 antialiased min-h-screen flex flex-col transition-colors duration-200">
         <GoogleAnalytics />
         <Header />
-        <main className="flex-1">
-        {children}
+        <main className="flex-1" style={{ containIntrinsicSize: 'auto 500px', contentVisibility: 'auto' }}>
+          {children}
         </main>
         <Footer />
       </body>

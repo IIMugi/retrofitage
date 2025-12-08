@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/mdx'
 import { 
   generateSEO, 
@@ -149,13 +150,16 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Main Content */}
           <div className="flex-1 max-w-content">
-            {/* Featured Image */}
+            {/* Featured Image - Fixed dimensions to prevent CLS */}
             {post.image && (
-              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-lg">
-                <img
+              <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-lg" style={{ minHeight: '256px' }}>
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>

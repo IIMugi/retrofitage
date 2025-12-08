@@ -18,9 +18,17 @@ export default function Header() {
 
   return (
     <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50">
-      {/* Top Ad Unit - Desktop 728x90 / Mobile 320x100 */}
-      <div className="bg-slate-50 dark:bg-slate-800 py-2">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Top Ad Unit - Desktop 728x90 / Mobile 320x100 - Fixed height to prevent CLS */}
+      <div 
+        className="bg-slate-50 dark:bg-slate-800 overflow-hidden"
+        style={{ 
+          height: '110px',
+          contain: 'strict',
+        }}
+      >
+        <div 
+          className="max-w-7xl mx-auto px-4 h-full flex items-center justify-center"
+        >
           <AdUnit slot="header-leaderboard" format="leaderboard" />
         </div>
       </div>
