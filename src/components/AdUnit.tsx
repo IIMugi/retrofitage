@@ -62,29 +62,40 @@ export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnit
 
   const config = adConfigs[slot as keyof typeof adConfigs] || adConfigs['in-content-1']
 
-  // Development placeholder
-  if (process.env.NODE_ENV !== 'production') {
+  // Show placeholder when AdSense is not configured
+  const isAdSenseConfigured = process.env.NEXT_PUBLIC_ADSENSE_ID && 
+    process.env.NEXT_PUBLIC_ADSENSE_ID !== 'ca-pub-XXXXXXXXXX'
+  
+  if (!isAdSenseConfigured) {
     return (
       <div 
-        className={`bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center text-slate-400 text-sm ${className}`}
+        className={`bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg flex items-center justify-center text-slate-400 dark:text-slate-500 text-sm ${className}`}
         style={{ 
           minHeight: config.desktop?.height || 90,
           maxWidth: config.desktop?.width || '100%',
         }}
       >
         <div className="text-center p-4">
-          <p className="font-medium">Ad Placeholder</p>
+          <p className="font-medium">📢 Ad Space Reserved</p>
           <p className="text-xs mt-1">{slot} ({config.desktop?.width}x{config.desktop?.height})</p>
+          <p className="text-xs mt-1 text-slate-300 dark:text-slate-600">AdSense pending approval</p>
         </div>
       </div>
     )
   }
 
+  // Reserve space to prevent CLS
+  const minHeight = config.mobile?.height || config.desktop?.height || 90
+
   return (
-    <div ref={adRef} className={`ad-container ${className}`}>
+    <div 
+      ref={adRef} 
+      className={`ad-container ${className}`}
+      style={{ minHeight: `${minHeight}px` }}
+    >
       <ins
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', minHeight: `${minHeight}px` }}
         data-ad-client="ca-pub-XXXXXXXXXX"
         data-ad-slot={slot}
         data-ad-format={format}
@@ -94,10 +105,10 @@ export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnit
   )
 }
 
-// Specialized ad components for common placements
+// Specialized ad components for common placements with CLS prevention
 export function InArticleAd({ position }: { position: 1 | 2 | 3 }) {
   return (
-    <div className="my-8 flex justify-center">
+    <div className="my-8 flex justify-center" style={{ minHeight: '280px' }}>
       <AdUnit slot={`in-content-${position}`} format="in-article" />
     </div>
   )
@@ -105,7 +116,7 @@ export function InArticleAd({ position }: { position: 1 | 2 | 3 }) {
 
 export function SidebarAd() {
   return (
-    <div className="hidden lg:block sticky top-24">
+    <div className="hidden lg:block sticky top-24" style={{ minHeight: '600px' }}>
       <AdUnit slot="sidebar-skyscraper" format="rectangle" />
     </div>
   )
@@ -113,7 +124,7 @@ export function SidebarAd() {
 
 export function LeaderboardAd() {
   return (
-    <div className="my-6 flex justify-center">
+    <div className="my-6 flex justify-center" style={{ minHeight: '100px' }}>
       <AdUnit slot="footer-leaderboard" format="leaderboard" />
     </div>
   )
