@@ -585,14 +585,14 @@ def git_commit_push(filepath: Path, topic: dict):
 # ============================================
 
 def main():
-    parser = argparse.ArgumentParser(description="RetrofitAge İçerik Yöneticisi")
-    parser.add_argument("--all", action="store_true", help="Tüm bekleyen konuları yaz")
-    parser.add_argument("--new-topic", action="store_true", help="Yeni konu öner (Gemini)")
-    parser.add_argument("--no-push", action="store_true", help="Git push yapma")
-    parser.add_argument("--force", action="store_true", help="Günlük limiti atla")
+    parser = argparse.ArgumentParser(description="RetrofitAge Content Manager")
+    parser.add_argument("--all", action="store_true", help="Generate all pending topics")
+    parser.add_argument("--new-topic", action="store_true", help="Suggest new topic (Gemini)")
+    parser.add_argument("--no-push", action="store_true", help="Skip git push")
+    parser.add_argument("--force", action="store_true", help="Skip daily limit check")
     args = parser.parse_args()
     
-    print("🏠 RetrofitAge Akıllı İçerik Yöneticisi")
+    print("RetrofitAge Smart Content Manager")
     print("=" * 50)
     
     # Load
@@ -600,12 +600,12 @@ def main():
     history = load_history()
     topics_data = load_topics()
     
-    print(f"📊 Toplam yayınlanmış: {history.get('totalPosts', 0)} post")
+    print(f"Total published: {history.get('totalPosts', 0)} posts")
     
-    # Günlük kontrol
+    # Daily check
     if not args.force and not args.new_topic and already_posted_today(history):
-        print("✅ Bugün zaten bir post yayınlandı. Yarın tekrar dene.")
-        print("   (--force ile bu kontrolü atlayabilirsin)")
+        print("Already posted today. Try again tomorrow.")
+        print("(Use --force to skip this check)")
         return
     
     # Yeni konu üret
