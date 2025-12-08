@@ -422,6 +422,42 @@ async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retri
     raise last_error
 
 
+def clean_gemini_preamble(text: str) -> str:
+    """Gemini'nin yanıtın başına eklediği preamble metinlerini temizle"""
+    lines = text.split('\n')
+    
+    # Başta gereksiz metinleri at
+    skip_phrases = [
+        'here is the rewritten',
+        'here\'s the rewritten',
+        'here is the article',
+        'here\'s the article',
+        'chief',
+        'adopting the persona',
+    ]
+    
+    start_idx = 0
+    for i, line in enumerate(lines):
+        lower_line = line.lower().strip()
+        # Skip empty lines and preamble phrases
+        if not lower_line:
+            continue
+        if any(phrase in lower_line for phrase in skip_phrases):
+            start_idx = i + 1
+            continue
+        # Frontmatter başladıysa orada kes
+        if lower_line == '---':
+            start_idx = i
+            break
+        # Normal içerik başladıysa orada kes
+        if lower_line and not any(phrase in lower_line for phrase in skip_phrases):
+            start_idx = i
+            break
+    
+    cleaned_lines = lines[start_idx:]
+    return '\n'.join(cleaned_lines).strip()
+
+
 def generate_article(key_manager: APIKeyManager, topic: dict) -> str:
     """Makale üret (draft + humanize)"""
     print(f"📝 Yazılıyor: {topic['title']}")
@@ -446,7 +482,11 @@ def generate_article(key_manager: APIKeyManager, topic: dict) -> str:
     )
     print("✅ Humanize tamamlandı")
     
-    return humanized
+    # 3. Clean preamble
+    cleaned = clean_gemini_preamble(humanized)
+    print("✅ Preamble temizlendi")
+    
+    return cleaned
 
 
 # ============================================
