@@ -106,17 +106,32 @@ export default function AdUnit({ slot, format = 'auto', className = '' }: AdUnit
 }
 
 // Specialized ad components for common placements with CLS prevention
-export function InArticleAd({ position }: { position: 1 | 2 | 3 }) {
+export function InArticleAd({ position }: { position: 1 | 2 | 3 | 4 | 5 }) {
   return (
-    <div className="my-8 flex justify-center" style={{ minHeight: '280px' }}>
-      <AdUnit slot={`in-content-${position}`} format="in-article" />
+    <div 
+      className="my-8 flex justify-center" 
+      style={{ minHeight: '280px' }}
+      itemScope
+      itemType="https://schema.org/WPAdBlock"
+    >
+      <div className="relative max-w-2xl w-full">
+        <span className="absolute -top-4 left-0 text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+          Advertisement
+        </span>
+        <AdUnit slot={`in-content-${position}`} format="in-article" />
+      </div>
     </div>
   )
 }
 
 export function SidebarAd() {
   return (
-    <div className="hidden lg:block sticky top-24" style={{ minHeight: '600px' }}>
+    <div 
+      className="hidden lg:block sticky top-24 self-start" 
+      style={{ minHeight: '600px', height: 'fit-content' }}
+      itemScope
+      itemType="https://schema.org/WPAdBlock"
+    >
       <AdUnit slot="sidebar-skyscraper" format="rectangle" />
     </div>
   )
