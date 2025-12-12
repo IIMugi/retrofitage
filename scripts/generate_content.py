@@ -247,11 +247,11 @@ Return the full rewritten article:"""
 def create_model(api_key: str):
     genai.configure(api_key=api_key)
     return genai.GenerativeModel(
-        model_name="gemini-2.5-pro",
+        model_name="gemini-2.5-flash",  # Free tier, blog için ideal
         generation_config={
             "temperature": 0.8,
             "top_p": 0.95,
-            "max_output_tokens": 16384,  # 2.5 Pro daha yüksek limit destekliyor
+            "max_output_tokens": 8192,  # Flash yeterli output limit
         },
         system_instruction=SYSTEM_PROMPT
     )
@@ -392,7 +392,13 @@ Write now as a seasoned professional sharing hard-earned knowledge:"""
 
 
 async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retries: int = 15) -> str:
-    """Retry ve key rotation ile Gemini çağır - 10 key için 15 deneme"""
+    """Retry ve key rotation ile Gemini çağır - 10 key için 15 deneme
+    
+    Özellikler:
+    - 503 UNAVAILABLE error handling
+    - Exponential backoff (1s, 2s, 4s, 8s, 16s)
+    - Quota/rate limit için key rotation
+    """
     last_error = None
     
     for attempt in range(max_retries):
@@ -411,13 +417,23 @@ async def generate_with_retry(key_manager: APIKeyManager, prompt: str, max_retri
             last_error = e
             error_msg = str(e).lower()
             
+            # 503 Service Unavailable - Exponential backoff
+            if '503' in error_msg or 'unavailable' in error_msg or 'overloaded' in error_msg:
+                wait_time = min(2 ** attempt, 16)  # 1s, 2s, 4s, 8s, 16s max
+                print(f"⚠️ API geçici olarak aşırı yüklü (503), {wait_time}s bekleniyor... (deneme {attempt + 1}/{max_retries})")
+                time.sleep(wait_time)
+                continue
+            
+            # Quota/Rate limit - Key rotation
             if any(x in error_msg for x in ['429', 'quota', 'rate', 'exhausted', 'resource']):
                 key_manager.mark_exhausted(api_key)
                 print(f"⚠️ Rate limit, key değiştiriliyor... (deneme {attempt + 1}/{max_retries})")
-                time.sleep(5)  # Daha uzun bekleme
-            else:
-                print(f"❌ Beklenmeyen hata: {e}")
-                raise e
+                time.sleep(2)  # Kısa bekleme
+                continue
+            
+            # Diğer hatalar - Direkt fırlat
+            print(f"❌ Beklenmeyen hata: {e}")
+            raise e
     
     raise last_error
 
