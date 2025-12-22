@@ -247,11 +247,11 @@ Return the full rewritten article:"""
 def create_model(api_key: str):
     genai.configure(api_key=api_key)
     return genai.GenerativeModel(
-        model_name="gemini-2.5-flash",  # Free tier, blog için ideal
+        model_name="gemini-2.0-flash",  # Fixed: 2.0-flash for text, 2.5 is for image gen
         generation_config={
             "temperature": 0.8,
             "top_p": 0.95,
-            "max_output_tokens": 8192,  # Flash yeterli output limit
+            "max_output_tokens": 8192,
         },
         system_instruction=SYSTEM_PROMPT
     )
